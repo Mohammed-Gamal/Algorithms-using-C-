@@ -1,40 +1,34 @@
-// C++ program to find the commot items between two sorted arrays
-
 #include <iostream>
 using namespace std;
 
-bool distinct(int arr[], int size)
+void print(int A[], int n)
 {
-	for (int i = 0; i < size - 1; i++)
-	{
-		for (int j = i + 1; j < size; j++)
-		{
-			if (arr[i] == arr[j])
-			{
-				return false;
-			}
-		}
-	}
-	return true;
+	cout << "List items: ";
+	for (int i = 0; i < n; i++)
+		cout << A[i] << "  ";
+	cout << endl;
 }
 
-void print(int arr[], int size)
+bool unique(int A[], int n)
 {
-	cout << "List: ";
-	for (int i = 0; i < size; i++)
-		cout << arr[i] << "  ";
+	for (int i = 0; i <= n - 2; i++)
+		for (int j = i + 1; j <= n - 1; j++)
+			if (A[i] == A[j])
+				return false;
+	return true;
 }
 
 int main()
 {
-	int list[6] = { 10, 200, 39, 39, 45, 25 };
+	int A[] = {2, 4, 3, 5, 6};
+	int n = sizeof(A) / sizeof(A[0]);
 
-	print(list, 6);
+	print(A, n);
 
-	if (distinct(list, 6) == true)
-		cout << "\n\nAll elements are unique!" << endl;
+	if (unique(A, n))
+		cout << "List items are unique!" << endl;
 	else
-		cout << "\nThe list elements are not unique!" << endl;
+		cout << "List items are not unique!" << endl;
 
 	return 0;
 }
