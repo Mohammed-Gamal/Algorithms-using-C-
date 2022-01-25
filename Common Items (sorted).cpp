@@ -1,32 +1,50 @@
+// Note: the two lists need to be sorted in order to apply this technique
+
 #include <iostream>
 using namespace std;
 
-int main() {
-	int L1[] = { 2, 5, 5, 5 }, L2[] = { 2, 2, 3, 5, 5, 7 };
+void print(int A[], int size)
+{
+	for (int i = 0; i < size; i++)
+		cout << A[i] << "  ";
+	cout << endl;
+}
 
-	int size1 = sizeof(L1) / sizeof(L1[0]);
-	int size2 = sizeof(L2) / sizeof(L2[0]);
-
-	cout << "Size of L1: " << size1 << ", Size of L2: " << size2 << endl;
-
+void common_items(int A1[], int n1, int A2[], int n2)
+{
 	int i = 0, j = 0;
-
-	cout << "\nCommon items are: ";
-	while (i < size1 && j < size2)
+	while (i < n1 && j < n2)
 	{
-		if (L1[i] == L2[j])
+		if (A1[i] == A2[j])
 		{
-			cout << L1[i] << "  ";
-
-			i++;
-			j++;
+			cout << A1[i] << "  ";
+			i += 1;
+			j += 1;
 		}
-		else if (L1[i] < L2[j])
-			i++;
-		else // if (L1[i] > L2[j])
-			j++;
+		else if (A1[i] < A2[j])
+			i += 1;
+		else
+			j += 1;
 	}
+}
 
+int main()
+{
+	int A1[] = {2, 5, 5, 5}, A2[] = {2, 2, 3, 5, 5, 7};
+
+	int n1 = sizeof(A1) / sizeof(A1[0]);
+	int n2 = sizeof(A2) / sizeof(A2[0]);
+
+	// Print out the two arrays
+	cout << "List 1: ";
+	print(A1, n1);
+
+	cout << "List 2: ";
+	print(A2, n2);
+
+	// Find the common items
+	cout << "\nCommon items: ";
+	common_items(A1, n1, A2, n2);
 	cout << endl;
 
 	return 0;
